@@ -1,0 +1,23 @@
+- hosts: node-exporters
+  become: yes
+  roles:
+    - role: prometheus-node-exporter
+      prometheus_node_exporter_version: 0.15.2
+      prometheus_node_exporter_release_name: node_exporter-0.15.2.linux-armv7
+      prometheus_node_exporter_enabled_collectors:
+        - conntrack
+        - cpu
+        - diskstats
+        - entropy
+        - filefd
+        - filesystem
+        - loadavg
+        - meminfo
+        - netdev
+        - netstat
+        - stat
+        - textfile
+        - time
+      prometheus_node_exporter_config_flags:
+        'web.listen-address': '0.0.0.0:9100'
+        'log.level': 'info'
